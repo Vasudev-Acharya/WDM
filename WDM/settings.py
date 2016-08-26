@@ -78,7 +78,7 @@ DATABASES = {
                 'ENGINE': 'django.db.backends.mysql',
                 'NAME': 'WEATHER_DATA',
                 'USER': 'root',
-                'PASSWORD': 'chinkajee',
+                'PASSWORD': os.environ['DB_PWD'],
                 'HOST': 'localhost',
                 'PORT': '3306',
     }
