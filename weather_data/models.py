@@ -1,10 +1,20 @@
 import django
 from django.db import models
 
+TYPECHOICE = (
+    ('Tmin', 'Tmin'),
+    ('Tmax', 'Tmax'),
+    ('Tmean', 'Tmean'),
+    ('Rainfall', 'Rainfall'),
+    ('Sunshine', 'Sunshine'),
+)
+
 class Region(models.Model):
     initial = True
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=45)
+    # owner = models.ForeignKey('auth.User', related_name='snippets')
+    # highlighted = models.TextField()
 
     class Meta:
         managed = True
@@ -16,14 +26,6 @@ class Region(models.Model):
 
 class Weather(models.Model):
     initial = True
-    TYPECHOICE = (
-        ('Tmin', 'Tmin'),
-        ('TMax', 'TMax'),
-        ('TMean', 'TMean'),
-        ('Rainfall', 'Rainfall'),
-        ('Sunshine', 'Sunshine'),
-    )
-
     id = models.AutoField(primary_key=True)
     region = models.ForeignKey(
                                     'REGION',
