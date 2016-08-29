@@ -33,12 +33,12 @@ Attr=['Tmax','Tmin','Tmean','Sunshine','Rainfall']
 
 for loc in Locations:
     payload = {'name': loc}
-    r = requests.post(url, data=payload, auth=HTTPBasicAuth('vasu', 'chinkajee'))
+    r = requests.post(url, data=payload, auth=HTTPBasicAuth('vasu', os.environ['DB_PWD']))
 
     print r.text
 
     payload = {'loc_name': loc}
-    loc_response = requests.get(loc_response_url+loc+'/', auth=HTTPBasicAuth('vasu', 'chinkajee'))
+    loc_response = requests.get(loc_response_url+loc+'/', auth=HTTPBasicAuth('vasu', os.environ['DB_PWD']))
 
     print loc_response.json
 
@@ -58,12 +58,12 @@ for loc in Locations:
             for j in range(len(result[i])):
                 if result[i][0].isdigit():
                     # payload = {'region': reg, 'type':att,'month':result[7][j],'year':result[i][0],'value':result[i][j]}
-                    # weather_post = requests.post(weather_url, data=payload, auth=HTTPBasicAuth('vasu', 'chinkajee'))
+                    # weather_post = requests.post(weather_url, data=payload, auth=HTTPBasicAuth('vasu', os.environ['DB_PWD']))
                     #
                     # print weather_post.text
                     #
                     # # payload = {'loc_name': loc}
-                    # # loc_response = requests.get(loc_response_url + loc + '/', auth=HTTPBasicAuth('vasu', 'chinkajee'))
+                    # # loc_response = requests.get(loc_response_url + loc + '/', auth=HTTPBasicAuth('vasu', os.environ['DB_PWD']))
 
                     weather = Weather.objects.filter(region=reg.id,type=att,year=result[i][0],month=result[7][j])
 
